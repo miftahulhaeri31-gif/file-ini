@@ -34,6 +34,9 @@ Penyanyi: <br>
 File Lagu: <br>
 <input type="file" name="file"><br><br>
 
+Foto Album: <br>
+<input type="file" name="cover"><br><br>
+
 <button name="simpan">Simpan</button>
 </form>
 
@@ -52,9 +55,14 @@ if(isset($_POST['simpan'])){
     $file = $_FILES['file']['name'];
     $tmp = $_FILES['file']['tmp_name'];
 
+    $cover = $_FILES['cover']['name'];
+    $tmp_cover = $_FILES['cover']['tmp_name'];
+
+    move_uploaded_file($tmp_cover, "cover/".$cover);
+
     move_uploaded_file($tmp, "upload/".$file);
 
-    mysqli_query($conn,"INSERT INTO lagu VALUES(NULL,'$judul','$penyanyi','$file')");
+    mysqli_query($conn,"INSERT INTO lagu VALUES(NULL,'$judul','$penyanyi','$file','$cover')");
 
     header("location:index.php");
 }

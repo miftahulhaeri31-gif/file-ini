@@ -66,6 +66,9 @@ $data = mysqli_query($conn,"SELECT * FROM lagu");
 while($d = mysqli_fetch_array($data)){
 ?>
 <div class="card">
+
+    <img src="cover/<?= $d['cover'] ?>" width="120">
+
     <h3><?= $d['judul'] ?></h3>
     <p><?= $d['penyanyi'] ?></p>
 
